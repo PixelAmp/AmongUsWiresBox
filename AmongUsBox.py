@@ -8,6 +8,7 @@ def Standalone(LEDpins, BUTTONpins, interval):
         GPIO.setup(LEDpins[slot], GPIO.OUT)
         GPIO.setup(BUTTONpins[slot], GPIO.IN, pull_up_down=GPIO.PUD_UP)
     while True:
+        print("loop")
         #LED stuff
         GPIO.output(LEDpins[0], GPIO.HIGH)
         GPIO.output(LEDpins[1], GPIO.HIGH)
@@ -62,15 +63,16 @@ def cleanLoop(LEDpins, BUTTONpins, interval):
     for slot in range(4):
         GPIO.setup(LEDpins[slot], GPIO.OUT)
         GPIO.setup(BUTTONpins[slot], GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    for slot in range(4):
-        cable = GPIO.input(BUTTONpins[slot])
-        GPIO.output(LEDpins[slot], GPIO.HIGH) if cable == False else GPIO.output(LEDpins[slot], GPIO.LOW)
+    while True:
+        for slot in range(4):
+            cable = GPIO.input(BUTTONpins[slot])
+            GPIO.output(LEDpins[slot], GPIO.HIGH) if cable == False else GPIO.output(LEDpins[slot], GPIO.LOW)
 
 
 
 def main():
-    LEDpins = [4,17.27,22]      # The pins for LED's
-    BUTTONpins = [5,6,13,19]    # The The Pins for the wires
+    LEDpins = [5,6,13,19]      # The pins for LED's
+    BUTTONpins = [12,16,20,21]    # The The Pins for the wires
     interval = .2               # The length of time to blink on or off
     
     # GPIO.setmode(GPIO.BCM)
@@ -79,9 +81,9 @@ def main():
     #     GPIO.setup(LEDpins[slot], GPIO.OUT)
     #     GPIO.setup(BUTTONpins[slot], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-    Standalone(LEDpins, BUTTONpins, interval)
+    #Standalone(LEDpins, BUTTONpins, interval)
     #CablesLightLEDs(LEDpins, BUTTONpins, interval)
-    #cleanLoop(LEDpins, BUTTONpins, interval)
+    cleanLoop(LEDpins, BUTTONpins, interval)
 
 
 
