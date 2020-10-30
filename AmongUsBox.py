@@ -71,8 +71,9 @@ def cleanLoop(LEDpins, BUTTONpins, interval):
 
 
 def main():
-    LEDpins = [5,6,13,19]      # The pins for LED's
-    BUTTONpins = [12,16,20,21]    # The The Pins for the wires
+    print("starting!")
+    LEDpins = [5,13,21,25]      # The pins for LED's
+    BUTTONpins = [4,17,27,22]    # The The Pins for the wires
     interval = .2               # The length of time to blink on or off
     
     # GPIO.setmode(GPIO.BCM)
