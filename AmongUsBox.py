@@ -68,20 +68,40 @@ def main():
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    for slot in range(4):
-        GPIO.setup(LEDpins[slot], GPIO.OUT)
-        GPIO.setup(BUTTONpins[slot], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    
+    GPIO.setup(LEDpins[0], GPIO.OUT)
+    GPIO.setup(BUTTONpins[0], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(LEDpins[1], GPIO.OUT)
+    GPIO.setup(BUTTONpins[1], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(LEDpins[2], GPIO.OUT)
+    GPIO.setup(BUTTONpins[2], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(LEDpins[3], GPIO.OUT)
+    GPIO.setup(BUTTONpins[4], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     startupSequence(LEDpins, GPIO)
 
     while True:
-        for slot in range(4):
-            if GPIO.input(BUTTONpins[slot]) == False:
-                GPIO.output(LEDpins[slot], GPIO.HIGH)
-            else:
-                GPIO.output(LEDpins[slot], GPIO.LOW)
+        if GPIO.input(BUTTONpins[0]) == False:
+            GPIO.output(LEDpins[0], GPIO.HIGH)
+        else:
+            GPIO.output(LEDpins[0], GPIO.LOW)
 
-        if GPIO.input(BUTTONpins[0]) and GPIO.input(BUTTONpins[1]) and GPIO.input(BUTTONpins[2]) and GPIO.input(BUTTONpins[3]):
+        if GPIO.input(BUTTONpins[1]) == False:
+            GPIO.output(LEDpins[1], GPIO.HIGH)
+        else:
+            GPIO.output(LEDpins[1], GPIO.LOW)
+
+        if GPIO.input(BUTTONpins[2]) == False:
+            GPIO.output(LEDpins[2], GPIO.HIGH)
+        else:
+            GPIO.output(LEDpins[2], GPIO.LOW)
+
+        if GPIO.input(BUTTONpins[3]) == False:
+            GPIO.output(LEDpins[3], GPIO.HIGH)
+        else:
+            GPIO.output(LEDpins[3], GPIO.LOW)
+
+        if not GPIO.input(BUTTONpins[0]) and not GPIO.input(BUTTONpins[1]) and not GPIO.input(BUTTONpins[2]) and not GPIO.input(BUTTONpins[3]):
             time.sleep(.5)
             successSequence(LEDpins, GPIO)
 
