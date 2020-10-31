@@ -73,20 +73,17 @@ def main():
         GPIO.setup(BUTTONpins[slot], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     startupSequence(LEDpins, GPIO)
-    
-    GPIO.output(LEDpins[0], GPIO.LOW)
-    GPIO.output(LEDpins[1], GPIO.LOW)
-    GPIO.output(LEDpins[2], GPIO.LOW)
-    GPIO.output(LEDpins[3], GPIO.LOW)
 
     while True:
         for slot in range(4):
-            cable = GPIO.input(BUTTONpins[slot])
-            GPIO.output(LEDpins[slot], GPIO.HIGH) if cable == True else GPIO.output(LEDpins[slot], GPIO.LOW)
+            if GPIO.input(BUTTONpins[slot]) == False:
+                GPIO.output(LEDpins[slot], GPIO.HIGH)
+            else:
+                GPIO.output(LEDpins[slot], GPIO.LOW)
 
-            if GPIO.output(LEDpins[0], GPIO.HIGH) and GPIO.output(LEDpins[1], GPIO.HIGH) and GPIO.output(LEDpins[2], GPIO.HIGH) and GPIO.output(LEDpins[3], GPIO.HIGH):
-                time.sleep(.5)
-                successSequence(LEDpins, GPIO)
+        if GPIO.input(BUTTONpins[0]) and GPIO.input(BUTTONpins[1]) and GPIO.input(BUTTONpins[2]) and GPIO.input(BUTTONpins[3]):
+            time.sleep(.5)
+            successSequence(LEDpins, GPIO)
 
 if __name__ == "__main__":
     main()
