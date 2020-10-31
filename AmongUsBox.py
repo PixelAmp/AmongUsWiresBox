@@ -64,7 +64,7 @@ def startupSequence(LEDpins, GPIO):
 def main():
     print("Starting!")
     LEDpins = [5,13,21,25]      # The Pins for LED's
-    BUTTONpins = [22,21,17,4]    # The The Pins for the wires
+    BUTTONpins = [22,27,17,4]    # The The Pins for the wires
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
@@ -76,7 +76,7 @@ def main():
     GPIO.setup(LEDpins[2], GPIO.OUT)
     GPIO.setup(BUTTONpins[2], GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(LEDpins[3], GPIO.OUT)
-    GPIO.setup(BUTTONpins[4], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(BUTTONpins[3], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     startupSequence(LEDpins, GPIO)
 
